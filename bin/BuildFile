@@ -1,0 +1,11 @@
+ <use name=DetectorDescription/Core>
+ <use name=DetectorDescription/CoreImpl>
+ <use name=DetectorDescription/ExprAlgo>
+ <use name=DetectorDescription/Algorithm>
+ <use name=DetectorDescription/RegressionTest>
+ <use name=DetectorDescription/Parser>
+ <use name=xerces-c>
+ <bin file=DOMCount.cpp></bin>
+
+ 
+
