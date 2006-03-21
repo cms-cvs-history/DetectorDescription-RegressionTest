@@ -1,8 +1,4 @@
-#
-# $Id: BuildFile,v 1.28 2005/01/24 11:14:43 sashby Exp $ Converted for SCRAM Version 1.0 
-# NB: NOT BACKWARD COMPATIBLE!
-#
-# <group name=BaseUtilities>
+
  <use name=DetectorDescription/Core>
  <use name=DetectorDescription/CoreImpl>
  <use name=DetectorDescription/ExprAlgo>
@@ -10,15 +6,8 @@
  <use name=DetectorDescription/RegressionTest>
  <use name=DetectorDescription/Parser>
  <use name=xerces-c>
-# <lib name=CARFCore>
-# <lib name=DDDInterface>
-# <use name=Utilities>
-# <use name=uuid>
-# <use name=sockets>
 
-
-# # 
- <bin file=DOMCount.cpp></bin>
+# <bin file=DOMCount.cpp></bin>
 
  
 
