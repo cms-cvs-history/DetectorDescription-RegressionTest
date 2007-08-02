@@ -1,10 +1,24 @@
+<bin file=DOMCount.cpp>
+  <use name=DetectorDescription/Core>
+  <use name=DetectorDescription/ExprAlgo>
+  <use name=DetectorDescription/Algorithm>
+  <use name=DetectorDescription/RegressionTest>
+  <use name=DetectorDescription/Parser>
+  <use name=xerces-c>
+</bin>
+<bin file=DDErrorReport.cpp>
  <use name=DetectorDescription/Core>
  <use name=DetectorDescription/ExprAlgo>
  <use name=DetectorDescription/Algorithm>
  <use name=DetectorDescription/RegressionTest>
  <use name=DetectorDescription/Parser>
  <use name=xerces-c>
- <bin file=DOMCount.cpp></bin>
+ <use name=FWCore/Framework>
+ <use name=FWCore/Utilities>
+ <use name=FWCore/PluginManager>
+ <use name=FWCore/ParameterSet>
+ <use name=FWCore/ServiceRegistry>
+ <use name=FWCore/MessageLogger>
+</bin>
 
- 
 

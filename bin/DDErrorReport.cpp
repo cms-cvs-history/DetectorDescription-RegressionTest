@@ -5,26 +5,7 @@
 #include "DetectorDescription/Parser/interface/FIPConfiguration.h"
 #include "DetectorDescription/Core/src/DDCheck.h"
 #include "DetectorDescription/Core/interface/DDD.h"
-//#include "FWCore/PluginManager/interface/PluginManager.h"
-//#include "FWCore/PluginManager/interface/standard.h"
-// DDD Interface in CARF
-//#include "CARF/DDDInterface/interface/GeometryConfiguration.h"
-
-// Error Detection
-//#include "DetectorDescription/RegressionTest/interface/DDHtmlFormatter.h"
 #include "DetectorDescription/RegressionTest/interface/DDErrorDetection.h"
-
-//#include "DetectorDescription/Core/interface/graph_path.h"
-//typedef GraphPath<DDLogicalPart,DDPosData*> GPathType;
-
-// The DDD user-code after XML-parsing is located
-// in DetectorDescription/Core/src/tutorial.cc
-// Please have a look to all the commentary therein.
-
-// #include "Utilities/Notification/interface/TimingReport.h"
-// #include "Utilities/Notification/interface/TimerProxy.h"
-
-// BLOCK copy from cmsRun.cpp
 #include <boost/shared_ptr.hpp>
 #include "FWCore/Utilities/interface/Exception.h"
 #include "FWCore/PluginManager/interface/ProblemTracker.h"
@@ -35,22 +16,17 @@
 #include "FWCore/ServiceRegistry/interface/Service.h"
 
 #include "FWCore/MessageLogger/interface/MessageLogger.h"
-//#include "FWCore/MessageLogger/interface/MessageDrop.h"
 #include "FWCore/PluginManager/interface/PresenceFactory.h"
-//#include "FWCore/ServiceRegistry/interface/ServiceRegistry.h"
-//#include "FWCore/ServiceRegistry/interface/Service.h"
-// BLOCK END copy from cmsRun.cpp
 
 using namespace std;
 namespace DD { } using namespace DD;
 
 int main(int argc, char *argv[])
 {
-  //   static TimerProxy timer_("main()");
-  //   TimeMe t(timer_,false);
   std::string const kProgramName = argv[0];
   int rc = 0;
-  // BLOCK copy from cmsRun.cpp
+
+  // Copied from example stand-alone program in Message Logger July 18, 2007
   try {
 
     // A.  Instantiate a plug-in manager first.
@@ -100,28 +76,8 @@ int main(int argc, char *argv[])
     // E.  Make the services available.
     edm::ServiceRegistry::Operate operate(tempToken);
 
-// try {
-//     edmplugin::PluginManager::configure(edmplugin::standard::config());
-//   } catch(cms::Exception& e) {
-//     std::cerr << e.what() << std::endl;
-//     return 1;
-//   }
-  
-//   // Load the message service plug-in
-//   boost::shared_ptr<edm::Presence> theMessageServicePresence;
-//   try {
-//     theMessageServicePresence = boost::shared_ptr<edm::Presence>(edm::PresenceFactory::get()->
-// 								 makePresence("MessageServicePresence").release());
-//   } catch(cms::Exception& e) {
-//     std::cerr << e.what() << std::endl;
-//     return 1;
-//   }
-//   // BLOCK END copy from cmsRun.cpp
+    // END Copy from example stand-alone program in Message Logger July 18, 2007
 
-//   try { // DDD Prototype can throw DDException defined in DetectorDescription/Core/interface/DDException.h
-  
-    // Initialize a DDL Schema aware parser for DDL-documents
-    // (DDL ... Detector Description Language)
     cout << "initialize DDL parser" << endl;
     DDLParser* myP = DDLParser::instance();
 
@@ -133,14 +89,13 @@ int main(int argc, char *argv[])
        files and mention them at end of configuration.xml. Functional SW 
        will not suffer from this restriction).
     */  
-    //myP->SetConfig("configuration.xml");
 
     cout << "about to start parsing" << endl;
     string configfile("configuration.xml");
     if (argc==2) {
       configfile = argv[1];
     }
-    //    GeometryConfiguration documentProvider("configuration.xml");
+    //    Use the File-In-Path configuration document provider.
     FIPConfiguration fp;
     fp.readConfig(configfile);
     int parserResult = myP->parse(fp);
@@ -158,39 +113,10 @@ int main(int argc, char *argv[])
     ed.scan();
     ed.report(cout);
 
-    Constant::createConstantsFromEvaluator();  // DDConstants are not being created by anyone... it confuses me!
-    Constant::iterator<Constant> cit(Constant::begin()), ced(Constant::end());
-    for(; cit != ced; ++cit) {
-      cout << *cit << endl;
-    }
-
-    Vector::iterator<Vector> vit;
-    Vector::iterator<Vector> ved(Vector::end());
-    if ( vit == ved ) std::cout << "No DDVectors found." << std::endl;
-    for (; vit != ved; ++vit) {
-      if (vit->isDefined().second) {
-	std::cout << vit->toString() << std::endl;
-	const std::vector<double>& tv = *vit;
-	std::cout << "size: " << tv.size() << std::endl;
-	for (size_t i=0; i < tv.size(); ++i) {
-	  std::cout << tv[i] << "\t";
-	}
-	std::cout << std::endl;
-      }
-    }  
-
-//     Vector::iterator<Vector> vit(Vector::begin()), ved(Vector::end());
-//     for(; vit != ved; ++vit) {
-//       cout << *vit << endl;
-//     }
-
-
-    //   TimingReport* tr = TimingReport::current();
-    //   tr->dump(cout);    
     return 0;
   
   }
-  catch (DDException& e) // DDD-Exceptions are simple string for the Prototype
+  catch (DDException& e)
     {
       cerr << "DDD-PROBLEM:" << endl 
 	   << e << endl;
