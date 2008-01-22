@@ -3,8 +3,6 @@
 
 #include "DetectorDescription/Parser/interface/DDLParser.h"
 #include "DetectorDescription/Parser/interface/FIPConfiguration.h"
-#include "DetectorDescription/Core/src/DDCheck.h"
-#include "DetectorDescription/Core/interface/DDD.h"
 #include "DetectorDescription/RegressionTest/interface/DDErrorDetection.h"
 #include <boost/shared_ptr.hpp>
 #include "FWCore/Utilities/interface/Exception.h"
@@ -16,7 +14,6 @@
 #include "FWCore/ServiceRegistry/interface/Service.h"
 
 #include "FWCore/MessageLogger/interface/MessageLogger.h"
-#include "FWCore/PluginManager/interface/PresenceFactory.h"
 
 using namespace std;
 namespace DD { } using namespace DD;
