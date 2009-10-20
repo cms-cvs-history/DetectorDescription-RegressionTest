@@ -99,9 +99,10 @@ int main(int argc, char *argv[])
       exit(1);
     }
     cout << " parsing completed" << endl;
-  
+    theMessageServicePresence.reset();
     cout << endl << endl << "Start checking!" << endl << endl;
- 
+    cout.flush();
+
     DDErrorDetection ed;
     ed.scan();
     ed.report(cout);
