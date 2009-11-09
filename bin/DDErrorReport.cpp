@@ -71,8 +71,9 @@ int main(int argc, char *argv[])
     // END Copy from example stand-alone program in Message Logger July 18, 2007
 
     cout << "initialize DDL parser" << endl;
-    DDLParser* myP = DDLParser::instance();
-    myP->getDDLSAX2FileHandler()->setUserNS(false);
+    DDCompactView cpv;
+    DDLParser myP(cpv);// = DDLParser::instance();
+    myP.getDDLSAX2FileHandler()->setUserNS(false);
 
     //     cout << "about to set configuration" << endl;
     /* The configuration file tells the parser what to parse.
@@ -91,7 +92,7 @@ int main(int argc, char *argv[])
     //    Use the File-In-Path configuration document provider.
     FIPConfiguration fp;
     fp.readConfig(configfile);
-    int parserResult = myP->parse(fp);
+    int parserResult = myP.parse(fp);
     cout << "done parsing" << std::endl;
     cout.flush();
     if (parserResult != 0) {
