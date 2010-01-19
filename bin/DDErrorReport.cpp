@@ -104,9 +104,11 @@ int main(int argc, char *argv[])
     cout << endl << endl << "Start checking!" << endl << endl;
     cout.flush();
 
+//     DDErrorDetection ed(cpv);
+    // maybe later   ed.report(cpv,cout);
     DDErrorDetection ed;
-    ed.scan();
-    ed.report(cout);
+    //    ed.scan();
+    ed.report(cpv, cout);
 
     return 0;
   
