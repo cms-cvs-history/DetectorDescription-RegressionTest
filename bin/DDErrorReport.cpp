@@ -90,7 +90,7 @@ int main(int argc, char *argv[])
       configfile = argv[1];
     }
     //    Use the File-In-Path configuration document provider.
-    FIPConfiguration fp;
+    FIPConfiguration fp(cpv);
     fp.readConfig(configfile);
     int parserResult = myP.parse(fp);
     cout << "done parsing" << std::endl;
