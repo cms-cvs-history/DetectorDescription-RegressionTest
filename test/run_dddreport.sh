@@ -8,7 +8,8 @@ pushd ${LOCAL_TMP_DIR}
   export mecpath=${PATH}
   export PATH=./:${PATH}
   echo "DONE SETTING PATHS"
-  cp ${LOCAL_TOP_DIR}/src/GeometryReaders/XMLIdealGeometryESSource/test/testdddreport.sh .
+  echo "top dir : " ${LOCAL_TOP_DIR}
+  cp ${LOCAL_TOP_DIR}/src/DetectorDescription/RegressionTest/test/testdddreport.sh .
   cp ${LOCAL_TOP_DIR}/test/${SCRAM_ARCH}/DDErrorReport .
   echo "DONE WITH COPY AND ABOUT TO SHOW PATH"
   echo $PATH
